@@ -10,34 +10,31 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 // src/components/productService.ts
 export function fetchProducts() {
     return __awaiter(this, void 0, void 0, function* () {
-        const response = yield fetch("https://dummyjson.com/products?limit=50");
+        const response = yield fetch('https://dummyjson.com/products?limit=50');
         const data = yield response.json();
         return data.products;
     });
 }
 export function getUniqueCategories(products) {
-    return [...new Set(products.map((product) => product.category))];
+    return [...new Set(products.map(product => product.category))];
 }
 export function formatCategoryName(category) {
-    return category
-        .split("-")
-        .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
-        .join(" ");
+    return category.split('-').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
 }
 export function filterProducts(products, filters) {
     let result = [...products];
     if (filters.search) {
         const term = filters.search.toLowerCase();
-        result = result.filter((p) => p.title.toLowerCase().includes(term) ||
+        result = result.filter(p => p.title.toLowerCase().includes(term) ||
             p.description.toLowerCase().includes(term) ||
             p.brand.toLowerCase().includes(term));
     }
     if (filters.category) {
-        result = result.filter((p) => p.category === filters.category);
+        result = result.filter(p => p.category === filters.category);
     }
     if (filters.price) {
-        const [min, max] = filters.price.split("-").map(Number);
-        result = result.filter((p) => max ? p.price >= min && p.price <= max : p.price >= min);
+        const [min, max] = filters.price.split('-').map(Number);
+        result = result.filter(p => max ? p.price >= min && p.price <= max : p.price >= min);
     }
     return result;
 }

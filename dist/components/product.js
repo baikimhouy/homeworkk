@@ -7,18 +7,18 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-// src/api.ts
 export function fetchProducts() {
     return __awaiter(this, void 0, void 0, function* () {
-        const response = yield fetch('https://dummyjson.com/products?limit=50');
-        const data = yield response.json();
-        return data.products;
-    });
-}
-export function fetchCategories() {
-    return __awaiter(this, void 0, void 0, function* () {
-        const response = yield fetch('https://dummyjson.com/products/categories');
-        const data = yield response.json();
-        return data;
+        try {
+            const response = yield fetch("https://dummyjson.com/products?limit=6");
+            if (!response.ok)
+                throw new Error(`HTTP error! status: ${response.status}`);
+            const data = yield response.json();
+            return data.products;
+        }
+        catch (error) {
+            console.error("Error fetching products:", error);
+            return [];
+        }
     });
 }

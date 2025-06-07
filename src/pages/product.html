@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Product Detail</title>
+  <style>
+    #loading { display: none; }
+    #error { display: none; color: red; }
+    #product-detail { display: none; flex-direction: column; gap: 1rem; max-width: 600px; margin: auto; }
+  </style>
+</head>
+<body>
+  <div id="loading">Loading product...</div>
+  <div id="error"></div>
+  <div id="product-detail">
+    <img id="product-image" src="" alt="" width="400" />
+    <h1 id="product-title"></h1>
+    <p id="product-description"></p>
+    <p><strong>Price:</strong> <span id="product-price"></span></p>
+    <p><strong>Rating:</strong> <span id="product-rating"></span></p>
+    <p id="product-brand-category"></p>
+  </div>
+
+  <script type="module" src="./product.js"></script>
+</body>
+</html>
